@@ -1,5 +1,5 @@
 {
-  "var-1": {"id": "var-1", "name": "HeatTarget", "type": "number", "value": 22.5},
-  "var-2": {"id": "var-2", "name": "HeatAllowed", "type": "boolean", "value": true},
-  "var-3": {"id": "var-3", "name": "HeatReport", "type": "string", "value": "text"}
+  "var-1": {"id": "var-1", "name": "Setpoint", "type": "number", "value": 22.5},
+  "var-2": {"id": "var-2", "name": "HeatingOn", "type": "boolean", "value": true},
+  "var-3": {"id": "var-3", "name": "Report", "type": "string", "value": "text"}
 }

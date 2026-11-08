@@ -5,9 +5,9 @@ Homey Web API over your LAN and exposes every numeric and boolean device capabil
 Logic variable and Homey's own system health as metrics. Nothing runs on the Homey itself.
 
 ```
-homey_device_measure_power{device_name="Homey Energy Dongle",zone="Meterkast",sub="phase2",units="W",...} 2752
-homey_device_measure_temperature{device_name="Woonkamer Thermostaat",zone="Living Room",units="°C",...} 22
-homey_logic_variable{name="HeatTarget"} 22.5
+homey_device_measure_power{device_name="P1 meter",zone="Utility room",sub="phase2",units="W",...} 2752
+homey_device_measure_temperature{device_name="Living room thermostat",zone="Living room",units="°C",...} 21.5
+homey_logic_variable{name="Setpoint"} 21.5
 homey_system_temperature_celsius 58.9
 ```
 
@@ -148,10 +148,10 @@ A Homey with 100 devices produces roughly 700 series.
 
 ```promql
 # house power per phase
-homey_device_measure_power{device_name="Homey Energy Dongle", sub=~"phase."}
+homey_device_measure_power{device_name="P1 meter", sub=~"phase."}
 
 # kWh imported today (P1 meter counter)
-increase(homey_device_meter_power{device_name="Homey Energy Dongle", sub="imported"}[1d])
+increase(homey_device_meter_power{device_name="P1 meter", sub="imported"}[1d])
 
 # which apps eat memory
 topk(5, homey_system_memory_component_bytes)

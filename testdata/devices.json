@@ -1,6 +1,6 @@
 {
   "dev-1": {
-    "id": "dev-1", "name": "Energy Dongle", "zone": "zone-1", "class": "sensor", "available": true,
+    "id": "dev-1", "name": "P1 meter", "zone": "zone-1", "class": "sensor", "available": true,
     "capabilitiesObj": {
       "measure_power": {"id": "measure_power", "type": "number", "units": "W", "value": 1234.5},
       "measure_power.phase2": {"id": "measure_power.phase2", "type": "number", "units": "W", "value": 2500},

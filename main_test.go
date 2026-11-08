@@ -106,7 +106,7 @@ func TestClient(t *testing.T) {
 		t.Fatal(err)
 	}
 	d := devs["dev-1"]
-	if d.Name != "Energy Dongle" || d.CapabilitiesObj["measure_power"].Value != 1234.5 || d.CapabilitiesObj["onoff"].Value != true || d.CapabilitiesObj["light_hue"].Value != nil {
+	if d.Name != "P1 meter" || d.CapabilitiesObj["measure_power"].Value != 1234.5 || d.CapabilitiesObj["onoff"].Value != true || d.CapabilitiesObj["light_hue"].Value != nil {
 		t.Errorf("unexpected device %+v", d)
 	}
 	sys, err := c.System(t.Context())
@@ -141,22 +141,22 @@ func TestCollector(t *testing.T) {
 # HELP homey_device_available 1 when Homey reports the device as available.
 # TYPE homey_device_available gauge
 homey_device_available{class="light",device_id="dev-2",device_name="Lamp",zone=""} 0
-homey_device_available{class="sensor",device_id="dev-1",device_name="Energy Dongle",zone="Meterkast"} 1
+homey_device_available{class="sensor",device_id="dev-1",device_name="P1 meter",zone="Utility room"} 1
 # HELP homey_device_measure_power Homey device capability measure_power.
 # TYPE homey_device_measure_power gauge
-homey_device_measure_power{class="sensor",device_id="dev-1",device_name="Energy Dongle",sub="",units="W",zone="Meterkast"} 1234.5
-homey_device_measure_power{class="sensor",device_id="dev-1",device_name="Energy Dongle",sub="phase2",units="W",zone="Meterkast"} 2500
+homey_device_measure_power{class="sensor",device_id="dev-1",device_name="P1 meter",sub="",units="W",zone="Utility room"} 1234.5
+homey_device_measure_power{class="sensor",device_id="dev-1",device_name="P1 meter",sub="phase2",units="W",zone="Utility room"} 2500
 # HELP homey_device_onoff Homey device capability onoff.
 # TYPE homey_device_onoff gauge
 homey_device_onoff{class="light",device_id="dev-2",device_name="Lamp",sub="",units="",zone=""} 0
-homey_device_onoff{class="sensor",device_id="dev-1",device_name="Energy Dongle",sub="",units="",zone="Meterkast"} 1
+homey_device_onoff{class="sensor",device_id="dev-1",device_name="P1 meter",sub="",units="",zone="Utility room"} 1
 # HELP homey_device_weird_cap Homey device capability weird_cap.
 # TYPE homey_device_weird_cap gauge
 homey_device_weird_cap{class="light",device_id="dev-2",device_name="Lamp",sub="",units="",zone=""} 7
 # HELP homey_logic_variable Value of a Homey Logic variable (numbers as-is, booleans 0/1).
 # TYPE homey_logic_variable gauge
-homey_logic_variable{id="var-1",name="HeatTarget"} 22.5
-homey_logic_variable{id="var-2",name="HeatAllowed"} 1
+homey_logic_variable{id="var-1",name="Setpoint"} 22.5
+homey_logic_variable{id="var-2",name="HeatingOn"} 1
 # HELP homey_system_info Homey firmware and model.
 # TYPE homey_system_info gauge
 homey_system_info{model="Homey Pro (2026)",model_id="homey7q",node_version="v24.22.1",platform="local",version="13.5.3"} 1
