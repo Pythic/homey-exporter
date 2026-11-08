@@ -4,7 +4,7 @@
 #   docker compose up -d
 #   http://<host>:9414/metrics    exporter
 #   http://<host>:8428            VictoriaMetrics (vmui at /vmui)
-#   http://<host>:3000            Grafana, login admin/admin, data source is pre-provisioned
+#   http://<host>:3000            Grafana, login admin/admin, data source and the Homey dashboard are pre-provisioned
 services:
   homey-exporter:
     image: ghcr.io/pythic/homey-exporter:latest
@@ -29,6 +29,8 @@ services:
     restart: unless-stopped
     volumes:
       - ./grafana-datasource.yml:/etc/grafana/provisioning/datasources/victoriametrics.yml:ro
+      - ./grafana-dashboards.yml:/etc/grafana/provisioning/dashboards/homey.yml:ro
+      - ./dashboards:/var/lib/grafana/dashboards:ro
       - grafana:/var/lib/grafana
     ports:
       - "3000:3000"

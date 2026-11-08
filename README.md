@@ -45,8 +45,26 @@ scrape_configs:
 
 [`examples/docker-compose.yml`](examples/docker-compose.yml) starts the exporter together with
 VictoriaMetrics (Prometheus-compatible storage, 5 years retention) and Grafana with the data
-source pre-provisioned: copy `examples/.env.example` to `examples/.env`, fill in the URL and
-token, `docker compose up -d`.
+source and the dashboard below pre-provisioned: copy `examples/.env.example` to `examples/.env`,
+fill in the URL and token, `docker compose up -d`.
+
+## Grafana dashboard
+
+[`examples/dashboards/homey.json`](examples/dashboards/homey.json) (import it by hand or let the
+compose example provision it) shows grid power and current per phase, a boiler estimate, floor
+heating groups (power, floor temperature, on/off timeline), room temperature and humidity,
+Logic variables and Homey's own CPU, temperature and memory per app. Everything is selected
+through dashboard variables, so it works on any Homey without editing:
+
+| variable | pick |
+|---|---|
+| Energy meter (P1) | the device that reports `measure_power.phase1..3` |
+| Boiler phase / other loads / baseline | the phase your boiler is on, the metered loads that share it (they are subtracted) and a baseline in W; the remainder is plotted as the boiler estimate and integrated to kWh |
+| Floor heating groups | thermostats and relays whose `measure_power` you want stacked |
+| Rooms | sensors and thermostats for the temperature and humidity panels |
+| Logic variables | variables to plot (booleans as 0/1) |
+
+The provider has `allowUiUpdates: true`, so your variable choices can be saved from the UI.
 
 ## Configuration
 
