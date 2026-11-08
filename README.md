@@ -44,7 +44,9 @@ scrape_configs:
 ```
 
 [`examples/docker-compose.yml`](examples/docker-compose.yml) starts the exporter together with
-VictoriaMetrics (Prometheus-compatible storage with multi-year retention) and Grafana.
+VictoriaMetrics (Prometheus-compatible storage, 5 years retention) and Grafana with the data
+source pre-provisioned: copy `examples/.env.example` to `examples/.env`, fill in the URL and
+token, `docker compose up -d`.
 
 ## Configuration
 
@@ -60,7 +62,9 @@ the environment supplies the values). See [`config.example.json`](config.example
 | `cache_seconds` | | `10` | One fetch from Homey is reused for scrapes within this window |
 | `timeout_seconds` | | `10` | HTTP timeout per Homey API call |
 
-Environment variables win over the file. The token is never logged.
+Environment variables win over the file. The token is never logged. The Docker image runs as
+a non-root user, so a mounted `token_file` must be readable by uid 65532; in containers the
+`HOMEY_TOKEN` environment variable (for example via `env_file`) is the simpler route.
 
 The exporter fetches on scrape (six API calls, about one second on a Homey with 100 devices),
 so Prometheus' `scrape_interval` sets the poll rate; `cache_seconds` protects the Homey when

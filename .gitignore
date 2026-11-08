@@ -1,4 +1,5 @@
 /homey-exporter
 /homey-exporter.json
+/examples/.env
 /coverage.out
 /dist/
