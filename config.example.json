@@ -1,0 +1,8 @@
+{
+  "homey_url": "http://192.168.1.10",
+  "token": "",
+  "token_file": "/etc/homey-exporter/token",
+  "listen": ":9414",
+  "cache_seconds": 10,
+  "timeout_seconds": 10
+}

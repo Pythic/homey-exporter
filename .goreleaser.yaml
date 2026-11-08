@@ -1,0 +1,45 @@
+version: 2
+project_name: homey-exporter
+builds:
+  - env: [CGO_ENABLED=0]
+    goos: [linux, darwin, windows]
+    goarch: [amd64, arm64, arm]
+    goarm: ["7"]
+    ignore:
+      - goos: darwin
+        goarch: arm
+      - goos: windows
+        goarch: arm
+    flags: [-trimpath]
+    ldflags: ["-s -w -X main.version={{.Version}} -X main.commit={{.ShortCommit}}"]
+archives:
+  - formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+    files: [LICENSE, README.md, config.example.json]
+checksum:
+  name_template: checksums.txt
+dockers:
+  - image_templates: ["ghcr.io/pythic/homey-exporter:{{ .Version }}-amd64"]
+    use: buildx
+    dockerfile: Dockerfile.goreleaser
+    build_flag_templates: ["--platform=linux/amd64"]
+  - image_templates: ["ghcr.io/pythic/homey-exporter:{{ .Version }}-arm64"]
+    use: buildx
+    goarch: arm64
+    dockerfile: Dockerfile.goreleaser
+    build_flag_templates: ["--platform=linux/arm64"]
+docker_manifests:
+  - name_template: ghcr.io/pythic/homey-exporter:{{ .Version }}
+    image_templates:
+      - ghcr.io/pythic/homey-exporter:{{ .Version }}-amd64
+      - ghcr.io/pythic/homey-exporter:{{ .Version }}-arm64
+  - name_template: ghcr.io/pythic/homey-exporter:latest
+    image_templates:
+      - ghcr.io/pythic/homey-exporter:{{ .Version }}-amd64
+      - ghcr.io/pythic/homey-exporter:{{ .Version }}-arm64
+changelog:
+  use: github
+  filters:
+    exclude: ["^docs:", "^test:", "^ci:"]

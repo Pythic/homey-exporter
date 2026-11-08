@@ -1,0 +1,22 @@
+version: "2"
+run:
+  tests: true
+linters:
+  enable:
+    - bodyclose
+    - dupl
+    - goconst
+    - gocyclo
+    - misspell
+    - nakedret
+    - revive
+    - tparallel
+    - unconvert
+    - unparam
+  exclusions:
+    generated: lax
+    paths:
+      - examples$
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0

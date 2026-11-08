@@ -1,0 +1,7 @@
+# Minimal Prometheus scrape config for homey-exporter.
+global:
+  scrape_interval: 15s
+scrape_configs:
+  - job_name: homey
+    static_configs:
+      - targets: ["homey-exporter:9414"]

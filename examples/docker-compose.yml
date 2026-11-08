@@ -1,0 +1,32 @@
+# Exporter + VictoriaMetrics (Prometheus-compatible, long retention) + Grafana.
+# 1. cp ../config.example.json config.json and fill in homey_url (leave token empty)
+# 2. echo "<your Homey token>" > token
+# 3. docker compose up -d   → Grafana http://localhost:3000 (admin/admin), add data source http://victoriametrics:8428
+services:
+  homey-exporter:
+    image: ghcr.io/pythic/homey-exporter:latest
+    restart: unless-stopped
+    volumes:
+      - ./config.json:/etc/homey-exporter/config.json:ro
+      - ./token:/etc/homey-exporter/token:ro
+    ports:
+      - "9414:9414"
+  victoriametrics:
+    image: victoriametrics/victoria-metrics:latest
+    restart: unless-stopped
+    command: ["-retentionPeriod=5y", "-promscrape.config=/etc/prometheus.yml"]
+    volumes:
+      - ./prometheus.yml:/etc/prometheus.yml:ro
+      - vmdata:/victoria-metrics-data
+    ports:
+      - "8428:8428"
+  grafana:
+    image: grafana/grafana:latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana:/var/lib/grafana
+volumes:
+  vmdata:
+  grafana:

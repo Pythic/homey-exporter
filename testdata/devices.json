@@ -1,0 +1,20 @@
+{
+  "dev-1": {
+    "id": "dev-1", "name": "Energy Dongle", "zone": "zone-1", "class": "sensor", "available": true,
+    "capabilitiesObj": {
+      "measure_power": {"id": "measure_power", "type": "number", "units": "W", "value": 1234.5},
+      "measure_power.phase2": {"id": "measure_power.phase2", "type": "number", "units": "W", "value": 2500},
+      "onoff": {"id": "onoff", "type": "boolean", "units": null, "value": true},
+      "light_mode": {"id": "light_mode", "type": "enum", "units": null, "value": "temperature"},
+      "hidden.note": {"id": "hidden.note", "type": "string", "units": null, "value": null},
+      "light_hue": {"id": "light_hue", "type": "number", "units": null, "value": null}
+    }
+  },
+  "dev-2": {
+    "id": "dev-2", "name": "Lamp", "zone": "zone-missing", "class": "light", "available": false,
+    "capabilitiesObj": {
+      "onoff": {"id": "onoff", "type": "boolean", "value": false},
+      "weird-cap": {"id": "weird-cap", "type": "number", "value": 7}
+    }
+  }
+}

@@ -1,0 +1,7 @@
+# Used by goreleaser: copies the prebuilt binary (no compile step).
+FROM gcr.io/distroless/static-debian12:nonroot
+COPY homey-exporter /homey-exporter
+EXPOSE 9414
+USER nonroot:nonroot
+ENTRYPOINT ["/homey-exporter"]
+CMD ["-config", "/etc/homey-exporter/config.json"]

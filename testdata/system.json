@@ -1,0 +1,7 @@
+{
+  "homeyVersion": "13.5.3", "homeyModelId": "homey7q", "homeyModelName": "Homey Pro (2026)", "homeyPlatform": "local",
+  "nodeVersion": "v24.22.1", "totalmem": 4000, "freemem": 2500, "loadavg": [0.3, 0.17, 0.2], "uptime": 328171.41,
+  "cpus": [{"model": "Cortex-A72", "speed": 1400, "times": {"user": 8000, "nice": 0, "sys": 2000, "idle": 300000, "irq": 0}}],
+  "videoCoreTemperature": 58.9, "videoCoreThrottleCurrently": false, "videoCoreUnderVoltageCurrently": true,
+  "wifiSsid": "should-not-be-exported"
+}
